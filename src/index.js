@@ -1,4 +1,5 @@
 const express = require("express");
+const serverless = require("serverless-http");
 const path = require("path");
 const fileUpload = require("express-fileupload");
 const app = express();
@@ -9,7 +10,7 @@ require("../configs/env.config.js");
 require("../configs/db.config.js");
 const swaggerUi = require('swagger-ui-express');
 const cookieParser = require("cookie-parser");
-
+const router = express.Router();
 
 //middleware
 app.use(cookieParser());
@@ -18,8 +19,8 @@ app.use(fileUpload());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(cors({ origin: true }));
-
 // API PATH
+app.use("/.netlify/functions/index", router);
 app.use('/api/static', express.static('uploads'));
 
 // middleware that is specific to this router
@@ -64,3 +65,5 @@ app.listen(process.env.PORT || 8000, () => {
     console.log("\x1b[31m%s\x1b[0m", "Node server started at", `http://localhost:${process.env.PORT || 8000}/api-docs`);
     console.log("\x1b[30m%s\x1b[0m", "Node server started at", `http://localhost:${process.env.PORT || 8000}/api/v1/api-docs/swagger.json`);
 });
+
+module.exports.handler = serverless(app);
