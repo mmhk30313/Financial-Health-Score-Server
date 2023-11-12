@@ -19,26 +19,26 @@ exports.login_user = async (req, res) => {
     }
     const searchObj = { email };
     try {
-        const pipeline = [
-            {
-                $match: searchObj,
-            },
-            {
-                $project: {
-                    _id: 1,
-                    email: 1,
-                    user_name: 1,
-                    password: 1,
-                    isVerified: 1,
-                    address: 1,
-                    gender: 1,
-                }
-            }
-        ];
+        // const pipeline = [
+        //     {
+        //         $match: searchObj,
+        //     },
+        //     {
+        //         $project: {
+        //             _id: 1,
+        //             email: 1,
+        //             user_name: 1,
+        //             password: 1,
+        //             isVerified: 1,
+        //             address: 1,
+        //             gender: 1,
+        //         }
+        //     }
+        // ];
 
-        const user_ag_res = await User.aggregate(pipeline);
-        // const user_ag_res = await User.find(searchObj).populate('role_id');
-        const user = user_ag_res[0];
+        // const user_ag_res = await User.aggregate(pipeline);
+        const user_ag_res = await User.findOne(searchObj).select('-remember_token -__v');
+        const user = user_ag_res;
         console.log({ user: user });
 
         if (!user) {
