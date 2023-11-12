@@ -37,7 +37,7 @@ exports.login_user = async (req, res) => {
         // ];
 
         // const user_ag_res = await User.aggregate(pipeline);
-        const user_ag_res = await User.findOne(searchObj).select('-remember_token -__v');
+        const user_ag_res = await User.findOne(searchObj).select('-remember_token -__v').maxTimeMS(30000);;
         const user = user_ag_res;
         console.log({ user: user });
 
@@ -56,7 +56,7 @@ exports.login_user = async (req, res) => {
         const dataObj = {
             remember_token: accessToken,
         };
-        await User.updateOne(searchObj, dataObj);
+        await User.updateOne(searchObj, dataObj).maxTimeMS(30000);;
         return res.status(200).json({
             status: true,
             message: "User is logged in successfully!!!",
