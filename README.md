@@ -26,6 +26,6 @@
 * BusinessSchema
 * AccountDetailsSchema
 
-## you may surely find proper docs with api endpoints following link: [see here](https://localhost:8000/api-docs)
+## you may surely find proper docs with api endpoints following link: [see here](https://financial-health-score-server.onrender.com/api-docs)
 
 
