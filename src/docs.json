@@ -1,0 +1,375 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Swagger Financial Health Score - OpenAPI 3.0",
+        "description": "This is a sample Practice with Book & User Store Server based on the OpenAPI 3.0 specification. You can find out more about\nSwagger at [https://swagger.io](https://swagger.io).",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "apiteam@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.11"
+    },
+    "externalDocs": {
+        "description": "Getting Swagger Documentation Of (FHS - Financial Health Score) Server | FundBox Task",
+        "url": "http://localhost:5000/api-docs"
+    },
+    "securityDefinitions": {
+        "token": {
+            "type": "apiKey",
+            "name": "token",
+            "in": "header"
+        }
+    },
+    "security": [
+        {
+            "token": []
+        }
+    ],
+    "servers": [
+        {
+            "url": "http://localhost:5000/api/v1"
+        }
+    ],
+    "tags": [
+        {
+            "name": "User",
+            "description": "Everything about user related",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        },
+        {
+            "name": "User",
+            "description": "Operations about user"
+        }
+    ],
+    "paths": {
+        "/user/signup": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create a user",
+                "description": "Implement a MongoDB query to signup a user in the 'User' collection",
+                "operationId": "addPet",
+                "requestBody": {
+                    "description": "Create a new user in the store",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        },
+                        "application/xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/book/find-books/genre-publisher": {
+            "post": {
+                "tags": [
+                    "Book"
+                ],
+                "summary": "Task-3 | Get Specific Books",
+                "description": "Implement a MongoDB query to find books in the 'Books' collection with a specific genre 'Sci - Fi' and published by 'Roli Books'.",
+                "operationId": "getBooks",
+                "requestBody": {
+                    "description": "The payload containing the following fields.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/requestBodies/SpecificBookBody"
+                            }
+                        },
+                        "application/xml": {
+                            "schema": {
+                                "$ref": "#/components/requestBodies/SpecificBookBody"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/requestBodies/SpecificBookBody"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Book"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Book"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "petstore_auth": [
+                            "write:pets",
+                            "read:pets"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/book//get/feature-books": {
+            "get": {
+                "tags": [
+                    "Book"
+                ],
+                "summary": "Task-4 | Get featured books",
+                "description": "Task 4: Create an instance method within the 'Book' model to retrieve books from the 'ooks' collection that have a rating equal to or higher than 4. These books will be categorized as featured books. Additionally, introduce a new field named 'featured' to the featured book objects.The value of this field should be 'Popular' if the book's rating is greater than or equal to 4. For books with a rating exceeding 4.5, the value should be set to 'BestSeller'.",
+                "operationId": "findFeaturedBook",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Book"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Book"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid query string supplied"
+                    },
+                    "404": {
+                        "description": "Book not found"
+                    },
+                    "405": {
+                        "description": "Validation exception"
+                    }
+                }
+            }
+        },
+        "/book/update/book-prices": {
+            "patch": {
+                "tags": [
+                    "Book"
+                ],
+                "summary": "Task-5 | Update book prices type",
+                "description": "In the existing book data, some books have their prices stored as strings instead of integers.To ensure consistent data representation, you are required to update the prices of all books from string format to integer format using a MongoDB update query.However, to limit the scope of the update and ensure data accuracy, the prices should be updated only for books published after 2020",
+                "operationId": "UpdateBookPriceTypes",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateBook"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateBook"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Validation exception"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Book": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "example": "success/error"
+                    },
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/BookData"
+                        }
+                    }
+                },
+                "xml": {
+                    "name": "book"
+                }
+            },
+            "UpdateBook": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "example": "success/error"
+                    },
+                    "data": {
+                        "type": "object",
+                        "items": {
+                            "$ref": "#/components/schemas/BookData"
+                        }
+                    }
+                },
+                "xml": {
+                    "name": "book"
+                }
+            },
+            "BookData": {
+                "type": "object",
+                "properties": {}
+            },
+            "User": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 10
+                    },
+                    "username": {
+                        "type": "string",
+                        "example": "theUser"
+                    },
+                    "firstName": {
+                        "type": "string",
+                        "example": "John"
+                    },
+                    "lastName": {
+                        "type": "string",
+                        "example": "James"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "john@email.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "12345"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "12345"
+                    },
+                    "userStatus": {
+                        "type": "integer",
+                        "description": "User Status",
+                        "format": "int32",
+                        "example": 1
+                    }
+                },
+                "xml": {
+                    "name": "user"
+                }
+            },
+            "ApiResponse": {
+                "type": "object",
+                "properties": {}
+            }
+        },
+        "requestBodies": {
+            "SpecificBookBody": {
+                "description": "Payload object that needs to be added to get data",
+                "required": [
+                    "genre",
+                    "publisher"
+                ],
+                "type": "object",
+                "properties": {
+                    "genre": {
+                        "type": "string",
+                        "example": "Sci-Fi"
+                    },
+                    "publisher": {
+                        "type": "string",
+                        "example": "Roli Books"
+                    }
+                }
+            },
+            "Pet": {
+                "description": "Pet object that needs to be added to the store",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Pet"
+                        }
+                    },
+                    "application/xml": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Pet"
+                        }
+                    }
+                }
+            },
+            "UserArray": {
+                "description": "List of user object",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "api_key": {
+                "type": "apiKey",
+                "name": "Bearer Token",
+                "in": "header"
+            }
+        }
+    }
+}

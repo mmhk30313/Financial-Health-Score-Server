@@ -1,0 +1,1073 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Swagger Financial Health Score - OpenAPI 3.0",
+        "description": "This is a sample Practice with Book & User Store Server based on the OpenAPI 3.0 specification. You can find out more about\nSwagger at [https://swagger.io](https://swagger.io).",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "apiteam@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.11"
+    },
+    "externalDocs": {
+        "description": "Getting Swagger Documentation Of (FHS - Financial Health Score) Server | FundBox Task",
+        "url": "http://localhost:5000/api-docs"
+    },
+    "securityDefinitions": {
+        "token": {
+            "type": "apiKey",
+            "name": "token",
+            "in": "header"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api/v1"
+        }
+    ],
+    "tags": [
+        {
+            "name": "User",
+            "description": "Everything about user related",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        },
+        {
+            "name": "Business",
+            "description": "Operations about Business"
+        },
+        {
+            "name": "AccountDetails",
+            "description": "Operations about AccountDetails"
+        }
+    ],
+    "paths": {
+        "/user/signup": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create a user",
+                "description": "Implement a MongoDB query to signup a user in the 'User' collection",
+                "operationId": "addUser",
+                "requestBody": {
+                    "description": "Create a new user in the store",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/UserSchemas/SignUpUser"
+                            }
+                        },
+                        "application/xml": {
+                            "schema": {
+                                "$ref": "#/components/UserSchemas/SignUpUser"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/UserSchemas/SignUpUser"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/UserSchemas/SignUpUser"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/UserSchemas/SignUpUser"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Login a user",
+                "description": "Implement a MongoDB query to login a user",
+                "operationId": "loginUser",
+                "requestBody": {
+                    "description": "Login a user in the app",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/UserSchemas/LogInUser"
+                            }
+                        },
+                        "application/xml": {
+                            "schema": {
+                                "$ref": "#/components/UserSchemas/LogInUser"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/UserSchemas/LogInUser"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/UserSchemas/LogInUser"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/UserSchemas/LogInUser"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/user/{email}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Find a user",
+                "description": "Implement a MongoDB query to find a user by email",
+                "operationId": "findUserByEmail",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "Email of user to return",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "xyz@gmail.com"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/UserSchemas/FindUserByEmail"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/UserSchemas/FindUserByEmail"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Find all users",
+                "description": "Implement a MongoDB query to find all users",
+                "operationId": "findAllUsers",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/UserSchemas/FindAllUsers"
+                                    }
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/UserSchemas/FindAllUsers"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/user/update": {
+            "patch": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update a user",
+                "description": "Implement a MongoDB query to update a user",
+                "operationId": "updateUser",
+                "requestBody": {
+                    "description": "Update a user to the store",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/UserSchemas/UpdateUser"
+                            }
+                        },
+                        "application/xml": {
+                            "schema": {
+                                "$ref": "#/components/UserSchemas/UpdateUser"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/UserSchemas/UpdateUser"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/UserSchemas/UpdateUser"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/UserSchemas/UpdateUser"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/business": {
+            "post": {
+                "tags": [
+                    "Business"
+                ],
+                "summary": "Create a Business",
+                "description": "Implement a MongoDB query to create a Business",
+                "operationId": "createBusiness",
+                "requestBody": {
+                    "description": "Create a new Business in the store",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/BusinessSchemas/CreateBusiness"
+                            }
+                        },
+                        "application/xml": {
+                            "schema": {
+                                "$ref": "#/components/BusinessSchemas/CreateBusiness"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/BusinessSchemas/CreateBusiness"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/BusinessSchemas/CreateBusiness"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/business/update": {
+            "put": {
+                "tags": [
+                    "Business"
+                ],
+                "summary": "Update a Business",
+                "description": "Implement a MongoDB query to update a Business",
+                "operationId": "updateBusiness",
+                "parameters": [
+                    {
+                        "name": "business_id",
+                        "in": "query",
+                        "description": "Business ID to update",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "5f9b0b3b4b0b3b4b0b3b4b0b"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Update a Business in the store",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/BusinessSchemas/UpdateBusiness"
+                            }
+                        },
+                        "application/xml": {
+                            "schema": {
+                                "$ref": "#/components/BusinessSchemas/UpdateBusiness"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/businesses": {
+            "get": {
+                "tags": [
+                    "Business"
+                ],
+                "summary": "Find all businesses",
+                "description": "Implement a MongoDB query to find all businesses",
+                "operationId": "findAllBusinesses",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/BusinessSchemas/FindBusinesses"
+                                    }
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/BusinessSchemas/FindBusinesses"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/business/{business_id}": {
+            "delete": {
+                "tags": [
+                    "Business"
+                ],
+                "summary": "Delete a Business",
+                "description": "Implement a MongoDB query to delete a Business",
+                "operationId": "deleteBusiness",
+                "parameters": [
+                    {
+                        "name": "business_id",
+                        "in": "path",
+                        "description": "business_id of business to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "5f9b0b3b4b0b3b4b0b3b4b0b"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/account/{month}": {
+            "post": {
+                "tags": [
+                    "AccountDetails"
+                ],
+                "summary": "Create an Account",
+                "description": "Implement a MongoDB query to create an Account",
+                "operationId": "createAccount",
+                "parameters": [
+                    {
+                        "name": "month",
+                        "in": "path",
+                        "description": "Month values that need to be considered for table or graph",
+                        "required": true,
+                        "explode": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "January",
+                            "enum": [
+                                "January",
+                                "February",
+                                "March",
+                                "April",
+                                "May",
+                                "June",
+                                "July",
+                                "August",
+                                "September",
+                                "October",
+                                "November",
+                                "December"
+                            ]
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Create a new Account in the store",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/AccountSchemas/CreateAccount"
+                            }
+                        },
+                        "application/xml": {
+                            "schema": {
+                                "$ref": "#/components/AccountSchemas/CreateAccount"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/AccountSchemas/ResponseCreateAccount"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/AccountSchemas/ResponseCreateAccount"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/accounts": {
+            "get": {
+                "tags": [
+                    "AccountDetails"
+                ],
+                "summary": "Find all accounts",
+                "description": "Implement a MongoDB query to find all accounts",
+                "operationId": "findAllAccounts",
+                "parameters": [
+                    {
+                        "name": "business_id",
+                        "in": "query",
+                        "description": "Business ID to find all accounts",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "5f9b0b3b4b0b3b4b0b3b4b0b"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/AccountSchemas/FindAccounts"
+                                    }
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/AccountSchemas/FindAccounts"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/account/{account_id}": {
+            "patch": {
+                "tags": [
+                    "AccountDetails"
+                ],
+                "summary": "Update an Account",
+                "description": "Implement a MongoDB query to update an Account",
+                "operationId": "updateAccount",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "path",
+                        "description": "account_id that needs to be considered for updating an account details",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "5f9b0b3b4b0b3b4b0b3b4b0b"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Create a new Account in the store",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/AccountSchemas/UpdateAccount"
+                            }
+                        },
+                        "application/xml": {
+                            "schema": {
+                                "$ref": "#/components/AccountSchemas/UpdateAccount"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/AccountSchemas/ResponseUpdateAccount"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/AccountSchemas/ResponseUpdateAccount"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "UserSchemas": {},
+            "BusinessSchemas": {},
+            "AccountSchemas": {}
+        },
+        "UserSchemas": {
+            "SignUpUser": {
+                "required": [
+                    "user_name",
+                    "email",
+                    "password",
+                    "confirm_password"
+                ],
+                "type": "object",
+                "properties": {
+                    "user_name": {
+                        "type": "string",
+                        "example": "Mr. XYZ"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "xyz@email.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "12345"
+                    },
+                    "confirm_password": {
+                        "type": "string",
+                        "example": "12345"
+                    },
+                    "mobile": {
+                        "type": "string",
+                        "example": "015211088.."
+                    },
+                    "gender": {
+                        "type": "string",
+                        "example": "male"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Dhaka, Bangladesh"
+                    }
+                },
+                "xml": {
+                    "name": "user"
+                }
+            },
+            "LogInUser": {
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "example": "xyz@email.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "12345"
+                    }
+                },
+                "xml": {
+                    "name": "user"
+                }
+            },
+            "FindUserByEmail": {
+                "type": "object",
+                "properties": {
+                    "user_name": {
+                        "type": "string",
+                        "example": "Mr. XYZ"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "xyz@email.com"
+                    },
+                    "mobile": {
+                        "type": "string",
+                        "example": "015211088.."
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Dhaka, Bangladesh"
+                    },
+                    "gender": {
+                        "type": "string",
+                        "example": "male"
+                    }
+                },
+                "xml": {
+                    "name": "user"
+                }
+            },
+            "FindAllUsers": {
+                "type": "object",
+                "properties": {
+                    "user_name": {
+                        "type": "string",
+                        "example": "Mr. XYZ"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "xyz@email.com"
+                    },
+                    "mobile": {
+                        "type": "string",
+                        "example": "015211088.."
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Dhaka, Bangladesh"
+                    },
+                    "gender": {
+                        "type": "string",
+                        "example": "male"
+                    },
+                    "isVerified": {
+                        "type": "boolean",
+                        "example": "true/false"
+                    }
+                },
+                "xml": {
+                    "name": "user"
+                }
+            },
+            "UpdateUser": {
+                "type": "object",
+                "properties": {
+                    "user_name": {
+                        "type": "string",
+                        "example": "Mr. XYZ"
+                    },
+                    "mobile": {
+                        "type": "string",
+                        "example": "015211088.."
+                    },
+                    "gender": {
+                        "type": "string",
+                        "example": "male"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Dhaka, Bangladesh"
+                    }
+                },
+                "xml": {
+                    "name": "user"
+                }
+            },
+            "ApiResponse": {
+                "type": "object",
+                "properties": {}
+            }
+        },
+        "BusinessSchemas": {
+            "CreateBusiness": {
+                "required": [
+                    "title",
+                    "user_email"
+                ],
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "example": "XYZ Business"
+                    },
+                    "user_email": {
+                        "type": "string",
+                        "example": "xyz@email.com"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "This is a description of the business"
+                    }
+                },
+                "xml": {
+                    "name": "business"
+                }
+            },
+            "UpdateBusiness": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "example": "XYZ Business"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "This is a description of the business"
+                    }
+                },
+                "xml": {
+                    "name": "business"
+                }
+            },
+            "FindBusinesses": {
+                "required": [
+                    "title",
+                    "user_email"
+                ],
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "example": "XYZ Business"
+                    },
+                    "user_email": {
+                        "type": "string",
+                        "example": "xyz@email.com"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "This is a description of the business"
+                    }
+                },
+                "xml": {
+                    "name": "business"
+                }
+            }
+        },
+        "AccountSchemas": {
+            "CreateAccount": {
+                "required": [
+                    "year",
+                    "business_id"
+                ],
+                "type": "object",
+                "properties": {
+                    "year": {
+                        "type": "integer",
+                        "example": 2023
+                    },
+                    "business_id": {
+                        "type": "string",
+                        "example": "5f9b0b3b4b0b3b4b0b3b4b0b"
+                    },
+                    "income": {
+                        "type": "integer",
+                        "example": 100
+                    },
+                    "expenses": {
+                        "type": "integer",
+                        "example": 50
+                    },
+                    "debts": {
+                        "type": "integer",
+                        "example": 20
+                    },
+                    "assets": {
+                        "type": "integer",
+                        "example": 30
+                    }
+                },
+                "xml": {
+                    "name": "AccountDetails"
+                }
+            },
+            "ResponseCreateAccount": {
+                "type": "object",
+                "properties": {
+                    "business_id": {
+                        "type": "string",
+                        "example": "5f9b0b3b4b0b3b4b0b3b4b0b"
+                    },
+                    "year": {
+                        "type": "integer",
+                        "example": 2023
+                    },
+                    "income": {
+                        "type": "integer",
+                        "example": 100
+                    },
+                    "expenses": {
+                        "type": "integer",
+                        "example": 50
+                    },
+                    "debts": {
+                        "type": "integer",
+                        "example": 20
+                    },
+                    "assets": {
+                        "type": "integer",
+                        "example": 30
+                    },
+                    "_id": {
+                        "type": "string",
+                        "example": "5f9b0b3b4b0b3b4b0b3b4b0b"
+                    }
+                },
+                "xml": {
+                    "name": "AccountDetails"
+                }
+            },
+            "ResponseUpdateAccount": {
+                "type": "object",
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "example": "5f9b0b3b4b0b3b4b0b3b4b0b"
+                    },
+                    "year": {
+                        "type": "integer",
+                        "example": 2023
+                    },
+                    "month": {
+                        "type": "string",
+                        "example": "January"
+                    },
+                    "income": {
+                        "type": "integer",
+                        "example": 100
+                    },
+                    "expenses": {
+                        "type": "integer",
+                        "example": 50
+                    },
+                    "debts": {
+                        "type": "integer",
+                        "example": 20
+                    },
+                    "assets": {
+                        "type": "integer",
+                        "example": 30
+                    }
+                },
+                "xml": {
+                    "name": "AccountDetails"
+                }
+            },
+            "UpdateAccount": {
+                "type": "object",
+                "properties": {
+                    "income": {
+                        "type": "integer",
+                        "example": 100
+                    },
+                    "expenses": {
+                        "type": "integer",
+                        "example": 50
+                    },
+                    "debts": {
+                        "type": "integer",
+                        "example": 20
+                    },
+                    "assets": {
+                        "type": "integer",
+                        "example": 30
+                    }
+                },
+                "xml": {
+                    "name": "AccountDetails"
+                }
+            },
+            "FindAccounts": {
+                "type": "object",
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "example": "5f9b0b3b4b0b3b4b0b3b4b0b"
+                    },
+                    "year": {
+                        "type": "integer",
+                        "example": 2023
+                    },
+                    "month": {
+                        "type": "string",
+                        "example": "January"
+                    },
+                    "income": {
+                        "type": "integer",
+                        "example": 100
+                    },
+                    "expenses": {
+                        "type": "integer",
+                        "example": 50
+                    },
+                    "debts": {
+                        "type": "integer",
+                        "example": 20
+                    },
+                    "assets": {
+                        "type": "integer",
+                        "example": 30
+                    }
+                },
+                "xml": {
+                    "name": "business"
+                }
+            }
+        },
+        "securitySchemes": {
+            "api_key": {
+                "description": "Example: 'Bearer {token}'",
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}
