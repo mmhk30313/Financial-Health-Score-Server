@@ -4,9 +4,9 @@ const fileUpload = require("express-fileupload");
 const app = express();
 const cors = require('cors');
 const bodyParser = require("body-parser");
-const { authenticateJWT } = require("./api/controllers/auth");
-require("./configs/env.config");
-require("./configs/db.config");
+const { authenticateJWT } = require("../api/controllers/auth/index.js");
+require("../configs/env.config.js");
+require("../configs/db.config.js");
 const swaggerUi = require('swagger-ui-express');
 const cookieParser = require("cookie-parser");
 
@@ -51,7 +51,7 @@ app.use(async (req, res, next) => {
 // console.log({paths});
 
 // auth middleware
-require("./paths/route_path.js")(app);
+require("../paths/route_path.js")(app);
 
 // route_paths?.map(route_path => app.use('/api', route_path));
 
