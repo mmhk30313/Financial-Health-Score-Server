@@ -1,10 +1,11 @@
 # (FHS) - Financial Health Score
 
 ## Local Server: [http://localhost:8000/api-docs](http://localhost:8000/api-docs)
+### Root URL (Local): [http://localhost:8000/api/v1](http://localhost:8000/api/v1)
 
-## Live Server: [https://localhost:8000/api-docs](http://localhost:8000/api-docs)
 
-### Root URL: [http://localhost:8000/api/v1](http://localhost:8000/api/v1)
+## Live Server: [https://financial-health-score-server.onrender.com/api-docs](https://financial-health-score-server.onrender.com/api-docs)
+### Root URL (Live): [https://financial-health-score-server.onrender.com/api/v1](http://localhost:8000/api/v1)
 
 ### Tools and Technologies: 
 
