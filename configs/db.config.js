@@ -47,7 +47,7 @@ if (process.env.NODE_ENV === "development") {
 
 }
 
-module.exports = mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+module.exports = mongoose.connect(dbURI)
   .then(() => {
     console.log("Mongodb Connected at", uri);
 
