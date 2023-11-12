@@ -61,9 +61,9 @@ global.appRoot = path.resolve(__dirname);
 
 
 app.listen(process.env.PORT || 8000, () => {
-    console.log("\x1b[32m%s\x1b[0m", "Node server started at", `http://localhost:${process.env.PORT || 8000}`);
-    console.log("\x1b[31m%s\x1b[0m", "Node server started at", `http://localhost:${process.env.PORT || 8000}/api-docs`);
-    console.log("\x1b[30m%s\x1b[0m", "Node server started at", `http://localhost:${process.env.PORT || 8000}/api/v1/api-docs/swagger.json`);
+    console.log("\x1b[32m%s\x1b[0m", "Node server started at", process.env.PROD_URL ? process.env.PROD_URL : `http://localhost:${process.env.PORT || 8000}`);
+    console.log("\x1b[31m%s\x1b[0m", "Node server started at", process.env.PROD_URL ? process.env.PROD_URL + "/api-docs" : `http://localhost:${process.env.PORT || 8000}/api-docs`);
+    console.log("\x1b[30m%s\x1b[0m", "Node server started at", process.env.PROD_URL ? process.env.PROD_URL + "/api/v1/api-docs/swagger.json" : `http://localhost:${process.env.PORT || 8000}/api/v1/api-docs/swagger.json`);
 });
 
 module.exports.handler = serverless(app);
