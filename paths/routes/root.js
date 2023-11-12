@@ -8,7 +8,7 @@ router.get("/", (_, res) => {
         message: "Welcome to the Financial Health Score API",
         server: process.env.NODE_ENV === "development"
             ? "http://localhost:8000/api-docs"
-            : "https://financial-health-score-server.onrender.com/api-docs",
+            : process.env.PROD_URL,
         version: "1.0.0",
     });
 });
