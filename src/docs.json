@@ -86,12 +86,12 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/UserSchemas/SignUpUser"
+                                    "$ref": "#/components/UserSchemas/ResponseSignUpUser"
                                 }
                             },
                             "application/xml": {
                                 "schema": {
-                                    "$ref": "#/components/UserSchemas/SignUpUser"
+                                    "$ref": "#/components/UserSchemas/ResponseSignUpUser"
                                 }
                             }
                         }
@@ -137,12 +137,12 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/UserSchemas/LogInUser"
+                                    "$ref": "#/components/UserSchemas/ResponseSignUpUser"
                                 }
                             },
                             "application/xml": {
                                 "schema": {
-                                    "$ref": "#/components/UserSchemas/LogInUser"
+                                    "$ref": "#/components/UserSchemas/ResponseSignUpUser"
                                 }
                             }
                         }
@@ -713,6 +713,26 @@
                     "address": {
                         "type": "string",
                         "example": "Dhaka, Bangladesh"
+                    }
+                },
+                "xml": {
+                    "name": "user"
+                }
+            },
+            "ResponseSignUpUser": {
+                "type": "object",
+                "properties": {
+                    "user_name": {
+                        "type": "string",
+                        "example": "Mr. XYZ"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "xyz@email.com"
+                    },
+                    "accessToken": {
+                        "type": "string",
+                        "example": "eyXjkfdlksakldsfjkldsfh3e90edfasjkddsjflkdsjfs...."
                     }
                 },
                 "xml": {
